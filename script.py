@@ -12,8 +12,8 @@ model = nn.Sequential(
     nn.Linear(30, 1)
 )
 
-# Load trained weights (placeholder, update with actual path)
-# model.load_state_dict(torch.load("model.pth"))
+# Load trained weights (placeholder, update with actual path), this is the same model used in the assignment
+model.load_state_dict(torch.load("model.pth"))
 model.eval()
 
 # Define transformation for input image
