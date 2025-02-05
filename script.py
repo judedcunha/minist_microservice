@@ -5,6 +5,9 @@ from torchvision import transforms
 from PIL import Image
 import io
 
+# Define sigmoid function
+def sigmoid(x): return 1/(1+torch.exp(-x))
+
 # Define the model
 model = nn.Sequential(
     nn.Linear(28*28, 30),
@@ -35,7 +38,7 @@ if uploaded_file is not None:
     image = transform(image).view(1, -1)  # Flatten image
     
     with torch.no_grad():
-        output = model(image)
-        prediction = "3" if output.item() < 0.5 else "7"
+        output = model(image).sigmoid()
+        prediction = "3" if output.item() > 0.5 else "7"
     
     st.write(f"### Prediction: {prediction}")
